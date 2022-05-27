@@ -17,6 +17,9 @@ class CreateFlightsTable extends Migration
             $table->id();
             $table->string('nama_kota_awal');
             $table->string('nama_kota_tujuan');
+            $table->date('tanggal')->nullable();
+            $table->time('jam_berangkat')->nullable();
+            $table->time('jam_sampai')->nullable();
             $table->string('harga')->default(0)->nullable();
             $table->timestamps();
         });
