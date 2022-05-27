@@ -16,4 +16,14 @@ class Flight extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
+
+    public function nama_kota_berangkat()
+    {
+        return $this->hasOne(Town::class, 'id', 'kota_berangkat');
+    }
+
+    public function nama_kota_tujuan()
+    {
+        return $this->hasOne(Town::class, 'id', 'kota_tujuan');
+    }
 }

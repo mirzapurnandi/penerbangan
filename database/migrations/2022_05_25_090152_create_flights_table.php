@@ -15,11 +15,10 @@ class CreateFlightsTable extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kota_awal');
-            $table->string('nama_kota_tujuan');
-            $table->date('tanggal')->nullable();
-            $table->time('jam_berangkat')->nullable();
-            $table->time('jam_sampai')->nullable();
+            $table->integer('kota_berangkat');
+            $table->integer('kota_tujuan');
+            $table->dateTime('berangkat')->nullable();
+            $table->dateTime('tiba')->nullable();
             $table->string('harga')->default(0)->nullable();
             $table->timestamps();
         });

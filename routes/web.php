@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TownController;
+use App\Http\Controllers\FlightController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('town', TownController::class)->middleware('cek.level:admin');
+
+Route::resource('admin-flight', FlightController::class)->middleware('cek.level:admin');

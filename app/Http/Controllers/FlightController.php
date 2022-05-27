@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Town;
 use App\Models\Flight;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,15 @@ class FlightController extends Controller
      */
     public function index()
     {
-        //
+        $pagination = 10;
+        $result = Flight::paginate($pagination);
+
+        $page = !request('page') ? 1 : request('page');
+
+        return view('admin.flight.index', [
+            'result' => $result,
+            'page' => ($page - 1) * $pagination
+        ]);
     }
 
     /**
@@ -24,7 +33,12 @@ class FlightController extends Controller
      */
     public function create()
     {
-        //
+        $dropdown_keberangkatan = $this->dropdown('Keberangkatan', 'kota_berangkat');
+        $dropdown_tujuan = $this->dropdown('Keberangkatan', 'kota_tujuan');
+        return view('admin.flight.add', [
+            'kota_berangkat' => $dropdown_keberangkatan,
+            'kota_tujuan' => $dropdown_tujuan
+        ]);
     }
 
     /**
@@ -35,7 +49,23 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kota_berangkat' => 'required',
+            'kota_tujuan' => 'required',
+            'berangkat' => 'required|date',
+            'tiba' => 'required|date',
+            'harga' => 'required|numeric'
+        ]);
+
+        $flight = new Flight();
+        $flight->kota_berangkat = $request->kota_berangkat;
+        $flight->kota_tujuan = $request->kota_tujuan;
+        $flight->berangkat = $request->berangkat;
+        $flight->tiba = $request->tiba;
+        $flight->harga = $request->harga;
+        $flight->save();
+
+        return redirect()->route('admin-flight.index')->with('message', '<div class="alert alert-success alert-dismissible">Jadwal Penerbangan Berhasil ditambahkan</div>');
     }
 
     /**
@@ -78,8 +108,23 @@ class FlightController extends Controller
      * @param  \App\Models\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Flight $flight)
+    public function destroy($id)
     {
-        //
+        $result = Flight::find($id);
+        if ($result->delete()) {
+            return redirect()->back()->with('message', '<div class="alert alert-info alert-dismissible">Jadwal Penerbangan terhapus...</div>');
+        }
+    }
+
+    public function dropdown($label, $name)
+    {
+        $html = '<select name="' . $name . '" class="form-select" aria-label="' . $label . '">';
+        $result = Town::all();
+        $html .= '<option value="">== Pilih Kota ==</option>';
+        foreach ($result as $key => $val) {
+            $html .= '<option value="' . $val->id . '">' . $val->nama . '</option>';
+        }
+        $html .= '</select>';
+        return $html;
     }
 }
