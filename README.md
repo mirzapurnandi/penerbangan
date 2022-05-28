@@ -23,7 +23,7 @@ login
 U: admin@gmail.com 
 P: password
 
-# Tambahkan Icon Bootstrap
+## Tambahkan Icon Bootstrap
 - `npm i bootstrap-icons`
 - `@import '~bootstrap-icons/font/bootstrap-icons';` => tambahkan ke resources/sass/app.scss
 - `npm install && npm run dev`
