@@ -34,15 +34,16 @@
                                         <td>{{ $page + ($key + 1) }}</td>
                                         <td>{{ $val->nama }}</td>
                                         <td class="text-right py-0 align-middle">
-                                            <div class="btn-group btn-group-sm">
+                                            <div class="d-flex">
                                                 <a href="{{ route('town.edit', $val->id) }}" class="btn btn-success m-1">
-                                                    Edit
+                                                    <i class="bi bi-pen-fill"></i>
                                                 </a>
                                                 <form action="{{ route('town.destroy', $val->id) }}" method="POST">
                                                     @method('DELETE')
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger m-1"
-                                                        onclick="return confirm('Yakin Hapus Produk ini... ?')"> Delete
+                                                        onclick="return confirm('Yakin Hapus Kota ini... ?')"> <i
+                                                            class="bi bi-trash-fill"></i>
                                                     </button>
                                                 </form>
                                             </div>

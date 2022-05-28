@@ -26,7 +26,7 @@
                                     <th>Nama Kota Berangkat</th>
                                     <th>Nama Kota Tujuan</th>
                                     <th>Waktu Berangkat</th>
-                                    <th>Waktu Tinggal</th>
+                                    <th>Waktu Tiba</th>
                                     <th>Harga Tiket</th>
                                     <th>Action</th>
                                 </tr>
@@ -41,10 +41,10 @@
                                         <td>{{ $val->tiba }}</td>
                                         <td>{{ $val->harga }}</td>
                                         <td class="text-right py-0 align-middle">
-                                            <div class="btn-group btn-group-sm">
+                                            <div class="d-flex">
                                                 <a href="{{ route('admin-flight.edit', $val->id) }}"
-                                                    class="btn btn-success m-1">
-                                                    Edit
+                                                    class="btn btn-success m-1" role="button">
+                                                    <i class="bi bi-pen-fill"></i>
                                                 </a>
                                                 <form action="{{ route('admin-flight.destroy', $val->id) }}"
                                                     method="POST">
@@ -52,7 +52,7 @@
                                                     @csrf
                                                     <button type="submit" class="btn btn-danger m-1"
                                                         onclick="return confirm('Yakin Hapus Jadwal Penerbangan ini... ?')">
-                                                        Delete
+                                                        <i class="bi bi-trash-fill"></i>
                                                     </button>
                                                 </form>
                                             </div>

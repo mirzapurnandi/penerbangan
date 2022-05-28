@@ -24,6 +24,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('town', TownController::class)->middleware('cek.level:admin');
-
-Route::resource('admin-flight', FlightController::class)->middleware('cek.level:admin');
+Route::group(
+    ['middleware' => ['auth']],
+    function () {
+        Route::resource('town', TownController::class)->middleware('cek.level:admin');
+        Route::resource('admin-flight', FlightController::class)->middleware(['cek.level:admin']);
+    }
+);
