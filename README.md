@@ -27,3 +27,6 @@ P: password
 - `npm i bootstrap-icons`
 - `@import '~bootstrap-icons/font/bootstrap-icons';` => tambahkan ke resources/sass/app.scss
 - `npm install && npm run dev`
+
+## Penambahan Helper
+- `composer dump-autoload`
