@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TownController;
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TownController;
+use App\Http\Controllers\UserFlightController;
+use App\Http\Controllers\UserTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,12 +25,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::group(
     ['middleware' => ['auth']],
     function () {
         Route::resource('town', TownController::class)->middleware('cek.level:admin');
         Route::resource('admin-flight', FlightController::class)->middleware(['cek.level:admin']);
+
+        ## User Route
+        Route::resource('flight', UserFlightController::class)->middleware(['cek.level:user']);
+        Route::get('flight/buy/{id}', [UserFlightController::class, 'buy'])->name('flight.buy');
+        Route::post('flight/buy', [UserFlightController::class, 'buyStore'])->name('flight.buy.store');
+
+        Route::resource('transaction', UserTransactionController::class)->middleware(['cek.level:user']);
     }
 );

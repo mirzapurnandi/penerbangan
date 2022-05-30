@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('stylesheets')
 </head>
 
 <body>
@@ -60,7 +61,13 @@
 
                         @can('user')
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Jadwal Penerbangan</a>
+                                <a class="nav-link" aria-current="page" href="{{ route('flight.index') }}">Jadwal
+                                    Penerbangan</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{{ route('transaction.index') }}">
+                                    Pesanan
+                                </a>
                             </li>
                         @endcan
                     </ul>
@@ -90,7 +97,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                                                                 document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -110,6 +117,7 @@
             @yield('content')
         </main>
     </div>
+    @stack('scripts')
 </body>
 
 </html>

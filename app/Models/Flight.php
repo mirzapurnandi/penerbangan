@@ -14,7 +14,7 @@ class Flight extends Model
 
     public function transaction()
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->hasMany(Transaction::class);
     }
 
     public function nama_kota_berangkat()

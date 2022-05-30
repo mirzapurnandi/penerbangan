@@ -17,8 +17,9 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('flight_id');
-            $table->string('status');
-            $table->dateTime('tanggal');
+            $table->string('status')->default('WAITING'); // WAITING, SUCCESS, CANCEL
+            $table->integer('qty');
+            $table->double('total');
             $table->foreign('flight_id')->references('id')->on('flights')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
