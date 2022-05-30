@@ -33,13 +33,13 @@
                             </thead>
                             <tbody>
                                 @foreach ($result as $key => $val)
-                                    <tr>
+                                    <tr class="align-middle">
                                         <td>{{ $page + ($key + 1) }}</td>
                                         <td>{{ $val->nama_kota_berangkat->nama }}</td>
                                         <td>{{ $val->nama_kota_tujuan->nama }}</td>
-                                        <td>{{ $val->berangkat }}</td>
-                                        <td>{{ $val->tiba }}</td>
-                                        <td>{{ $val->harga }}</td>
+                                        <td>{!! tanggal_indonesia($val->berangkat) !!}</td>
+                                        <td>{!! tanggal_indonesia($val->tiba) !!}</td>
+                                        <td>Rp. {{ format_uang($val->harga) }}</td>
                                         <td class="text-right py-0 align-middle">
                                             <div class="d-flex">
                                                 <a href="{{ route('admin-flight.edit', $val->id) }}"
