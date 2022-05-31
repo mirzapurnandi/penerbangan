@@ -94,9 +94,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up">We offer modern solutions for growing your business</h1>
-                    <h2 data-aos="fade-up" data-aos-delay="400">We are team of talented designers making websites with
-                        Bootstrap</h2>
+                    <h1 data-aos="fade-up">Sistem Informasi Jual Beli Tiket Pesawat </h1>
+                    <h2 data-aos="fade-up" data-aos-delay="400">Di sistem ini anda bisa memesan tiket pesawat dengan mudah, dan melihat kapan jadwal penerbangan </h2>
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
                             <a href="#about"
@@ -126,12 +125,9 @@
                         data-aos-delay="200">
                         <div class="content">
                             <h3>Who We Are</h3>
-                            <h2>Expedita voluptas omnis cupiditate totam eveniet nobis sint iste. Dolores est repellat
-                                corrupti reprehenderit.</h2>
+                            <h2>PENERBANGAN 3R</h2>
                             <p>
-                                Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor
-                                consequatur itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam
-                                et est corrupti.
+                                Penerbangan 3R adalah satu kesatuan sistem yang terdiri atas pemanfaatan wilayah udara, pesawat udara, bandar udara, angkutan udara, navigasi penerbangan, keselamatan, dan keamanan, lingkungan hidup, serta fasilitas penunjang, dan fasilitas umum lainnya.
                             </p>
                             <div class="text-center text-lg-start">
                                 <a href="#"
@@ -159,7 +155,7 @@
 
                 <header class="section-header">
                     <h2>Our Values</h2>
-                    <p>Odit est perspiciatis laborum et dicta</p>
+                    <p>Di Penerbangan 3R Anda Dengan Mudah</p>
                 </header>
 
                 <div class="row">
@@ -167,27 +163,21 @@
                     <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
                         <div class="box">
                             <img src="{{ asset('themes/assets/img/values-1.png') }}" class="img-fluid" alt="">
-                            <h3>Ad cupiditate sed est odio</h3>
-                            <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.
-                            </p>
+                            <h3>Melihat jadwal penerbangan</h3>
                         </div>
                     </div>
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
                         <div class="box">
                             <img src="{{ asset('themes/assets/img/values-2.png') }}" class="img-fluid" alt="">
-                            <h3>Voluptatem voluptatum alias</h3>
-                            <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.
-                            </p>
+                            <h3>Melihat harga tiket</h3>
                         </div>
                     </div>
 
                     <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
                         <div class="box">
                             <img src="{{ asset('themes/assets/img/values-3.png') }}" class="img-fluid" alt="">
-                            <h3>Fugit cupiditate alias nobis.</h3>
-                            <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.
-                            </p>
+                            <h3>Memesan tiket pesawat dengan mudah</h3>
                         </div>
                     </div>
 
