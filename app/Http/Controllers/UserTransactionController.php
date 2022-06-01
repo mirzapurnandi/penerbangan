@@ -16,11 +16,13 @@ class UserTransactionController extends Controller
     {
         $pagination = 10;
         $result = Transaction::userId()->with('flight')->where('status', 'WAITING')->paginate($pagination);
+        $history = Transaction::userId()->with('flight')->where('status', '!=', 'WAITING')->paginate($pagination);
 
         $page = !request('page') ? 1 : request('page');
 
         return view('user.transaction', [
             'result' => $result,
+            'history' => $history,
             'page' => ($page - 1) * $pagination
         ]);
     }

@@ -55,7 +55,29 @@
                             </div>
                             <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                                 tabindex="0">
-                                history ...
+                                <table class="table table-hover">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Kota Penerbangan</th>
+                                            <th>Jadwal Penerbangan</th>
+                                            <th>Total</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($history as $keys => $vals)
+                                            <tr>
+                                                <td>{{ $page + ($keys + 1) }}</td>
+                                                <td>{{ $vals->flight->nama_kota_berangkat->nama }} to
+                                                    {{ $vals->flight->nama_kota_tujuan->nama }}</td>
+                                                <td>{{ tanggal_indonesia($vals->flight->berangkat, true, false) }}</td>
+                                                <td>Rp. {{ format_uang($vals->total) }}</td>
+                                                <td>{{ $vals->status }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
