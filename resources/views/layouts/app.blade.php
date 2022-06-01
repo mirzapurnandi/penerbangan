@@ -52,7 +52,8 @@
                                     href="{{ route('admin-flight.index') }}">Jadwal Penerbangan</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="#">Transaksi</a>
+                                <a class="nav-link" aria-current="page"
+                                    href="{{ route('admin-transaction.index') }}">Transaksi</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" aria-current="page" href="#">User</a>
@@ -97,7 +98,7 @@
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                                                                                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 

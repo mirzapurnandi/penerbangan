@@ -14,7 +14,15 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $pagination = 10;
+        $result = Transaction::with('flight')->paginate($pagination);
+
+        $page = !request('page') ? 1 : request('page');
+
+        return view('admin.transaction.index', [
+            'result' => $result,
+            'page' => ($page - 1) * $pagination
+        ]);
     }
 
     /**

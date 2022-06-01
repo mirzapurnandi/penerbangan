@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TownController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserFlightController;
 use App\Http\Controllers\UserTransactionController;
 
@@ -32,6 +33,7 @@ Route::group(
     function () {
         Route::resource('town', TownController::class)->middleware('cek.level:admin');
         Route::resource('admin-flight', FlightController::class)->middleware(['cek.level:admin']);
+        Route::get('admin-transaction', [TransactionController::class, 'index'])->name('admin-transaction.index')->middleware(['cek.level:admin']);
         Route::get('admin-flight/save/{id}', [FlightController::class, 'buy'])->name('admin-flight.save')->middleware(['cek.level:admin']);
 
         ## User Route
