@@ -32,6 +32,7 @@ Route::group(
     function () {
         Route::resource('town', TownController::class)->middleware('cek.level:admin');
         Route::resource('admin-flight', FlightController::class)->middleware(['cek.level:admin']);
+        Route::get('admin-flight/save/{id}', [FlightController::class, 'buy'])->name('admin-flight.save')->middleware(['cek.level:admin']);
 
         ## User Route
         Route::resource('flight', UserFlightController::class)->middleware(['cek.level:user']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Town;
 use App\Models\Flight;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
@@ -74,9 +75,17 @@ class FlightController extends Controller
      * @param  \App\Models\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function show(Flight $flight)
+    public function show($id)
     {
-        //
+        $pagination = 10;
+        $result = Transaction::where('flight_id', $id)->paginate($pagination);
+
+        $page = !request('page') ? 1 : request('page');
+
+        return view('admin.flight.show', [
+            'result' => $result,
+            'page' => ($page - 1) * $pagination
+        ]);
     }
 
     /**
@@ -126,5 +135,13 @@ class FlightController extends Controller
         }
         $html .= '</select>';
         return $html;
+    }
+
+    public function buy($id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        $transaction->status = 'SUCCESS';
+        $transaction->save();
+        return back()->withInput();
     }
 }

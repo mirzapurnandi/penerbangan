@@ -42,6 +42,10 @@
                                         <td>Rp. {{ format_uang($val->harga) }}</td>
                                         <td class="text-right py-0 align-middle">
                                             <div class="d-flex">
+                                                <a href="{{ route('admin-flight.show', $val->id) }}"
+                                                    class="btn btn-primary m-1" role="button">
+                                                    <i class="bi bi-easel-fill"></i>
+                                                </a>
                                                 <a href="{{ route('admin-flight.edit', $val->id) }}"
                                                     class="btn btn-success m-1" role="button">
                                                     <i class="bi bi-pen-fill"></i>
