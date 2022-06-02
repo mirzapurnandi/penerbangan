@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FlightController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TownController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserFlightController;
@@ -20,9 +21,7 @@ use App\Http\Controllers\UserTransactionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [IndexController::class, 'index']);
 
 Auth::routes();
 

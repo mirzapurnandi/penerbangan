@@ -35,7 +35,7 @@ class FlightController extends Controller
     public function create()
     {
         $dropdown_keberangkatan = $this->dropdown('Keberangkatan', 'kota_berangkat');
-        $dropdown_tujuan = $this->dropdown('Keberangkatan', 'kota_tujuan');
+        $dropdown_tujuan = $this->dropdown('Tujuan', 'kota_tujuan');
         return view('admin.flight.add', [
             'kota_berangkat' => $dropdown_keberangkatan,
             'kota_tujuan' => $dropdown_tujuan

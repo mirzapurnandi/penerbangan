@@ -11,6 +11,16 @@
 
 
                     <div class="card-body">
+                        @if ($filter)
+                            <div class="alert alert-success alert-dismissible">
+                                Pencarian berdasarkan Filter Kota Berangkat, Kota Tujuan dan Tanggal, <br>
+                                anda tidak menemukan jadwal penerbangan...? <br>
+                                Hapus Filter Pencarian
+                                <a class="btn btn-sm btn-primary" href="{{ route('flight.index') }}" role="button"> <i
+                                        class="bi bi-trash"></i> Hapus </a>
+                            </div>
+                        @endif
+
                         @if (Session::has('message'))
                             {!! Session::get('message') !!}
                         @endif

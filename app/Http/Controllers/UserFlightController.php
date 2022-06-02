@@ -15,16 +15,31 @@ class UserFlightController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $dateNow = Carbon::now();
         $pagination = 10;
-        $result = Flight::where('berangkat', '>=', $dateNow)->paginate($pagination);
+        $filter = false;
+
+        if ($request->tanggal) {
+            $tanggal = $request->tanggal;
+            $kota_berangkat = $request->kota_berangkat;
+            $kota_tujuan = $request->kota_tujuan;
+            $filter = true;
+
+            $result = Flight::where([
+                'kota_berangkat' => $kota_berangkat,
+                'kota_tujuan' => $kota_tujuan
+            ])->whereDate('berangkat', '=', $tanggal)->paginate($pagination);
+        } else {
+            $result = Flight::where('berangkat', '>=', $dateNow)->paginate($pagination);
+        }
 
         $page = !request('page') ? 1 : request('page');
 
         return view('user.flight.index', [
             'result' => $result,
+            'filter' => $filter,
             'page' => ($page - 1) * $pagination
         ]);
     }
