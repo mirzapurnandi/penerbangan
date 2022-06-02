@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\TownController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserFlightController;
 use App\Http\Controllers\UserTransactionController;
 
@@ -34,6 +35,8 @@ Route::group(
         Route::resource('admin-flight', FlightController::class)->middleware(['cek.level:admin']);
         Route::get('admin-transaction', [TransactionController::class, 'index'])->name('admin-transaction.index')->middleware(['cek.level:admin']);
         Route::get('admin-flight/save/{id}', [FlightController::class, 'buy'])->name('admin-flight.save')->middleware(['cek.level:admin']);
+        Route::get('user', [UserController::class, 'index'])->name('user.index')->middleware(['cek.level:admin']);
+        Route::delete('user/{id}', [UserController::class, 'destroy'])->name('user.destroy')->middleware(['cek.level:admin']);
 
         ## User Route
         Route::resource('flight', UserFlightController::class)->middleware(['cek.level:user']);
