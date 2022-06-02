@@ -29,7 +29,7 @@
                                         <td>{{ $val->user->name }}</td>
                                         <td>{{ $val->qty }} Tiket</td>
                                         <td>Rp. {{ format_uang($val->total) }}</td>
-                                        <td>{!! tanggal_indonesia($val->tanggal) !!}</td>
+                                        <td>{!! tanggal_indonesia($val->created_at) !!}</td>
                                         <td class="text-right py-0 align-middle">
                                             @if ($val->status == 'WAITING')
                                                 {{ $val->status }} &nbsp; &nbsp; &nbsp;

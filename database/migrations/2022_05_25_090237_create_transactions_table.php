@@ -20,6 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('status')->default('WAITING'); // WAITING, SUCCESS, CANCEL
             $table->integer('qty');
             $table->double('total');
+            $table->string('bukti')->nullable();
             $table->foreign('flight_id')->references('id')->on('flights')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
