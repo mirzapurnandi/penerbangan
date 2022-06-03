@@ -94,9 +94,16 @@ class FlightController extends Controller
      * @param  \App\Models\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function edit(Flight $flight)
+    public function edit($id)
     {
-        //
+        $result = Flight::findOrFail($id);
+        $dropdown_keberangkatan = $this->dropdown('Keberangkatan', 'kota_berangkat', $result->kota_berangkat);
+        $dropdown_tujuan = $this->dropdown('Tujuan', 'kota_tujuan', $result->kota_tujuan);
+        return view('admin.flight.edit', [
+            'result' => $result,
+            'kota_berangkat' => $dropdown_keberangkatan,
+            'kota_tujuan' => $dropdown_tujuan
+        ]);
     }
 
     /**
@@ -106,9 +113,25 @@ class FlightController extends Controller
      * @param  \App\Models\Flight  $flight
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Flight $flight)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'kota_berangkat' => 'required',
+            'kota_tujuan' => 'required',
+            'berangkat' => 'required|date',
+            'tiba' => 'required|date',
+            'harga' => 'required|numeric'
+        ]);
+
+        $flight = Flight::findOrFail($id);
+        $flight->kota_berangkat = $request->kota_berangkat;
+        $flight->kota_tujuan = $request->kota_tujuan;
+        $flight->berangkat = $request->berangkat;
+        $flight->tiba = $request->tiba;
+        $flight->harga = $request->harga;
+        $flight->save();
+
+        return redirect()->route('admin-flight.index')->with('message', '<div class="alert alert-success alert-dismissible">Jadwal Penerbangan Berhasil diperbaharui</div>');
     }
 
     /**
@@ -125,13 +148,14 @@ class FlightController extends Controller
         }
     }
 
-    public function dropdown($label, $name)
+    public function dropdown($label, $name, $selected = false)
     {
         $html = '<select name="' . $name . '" class="form-select" aria-label="' . $label . '">';
         $result = Town::all();
         $html .= '<option value="">== Pilih Kota ==</option>';
         foreach ($result as $key => $val) {
-            $html .= '<option value="' . $val->id . '">' . $val->nama . '</option>';
+            $select = $val->id == $selected ? 'selected' : '';
+            $html .= '<option value="' . $val->id . '" ' . $select . '>' . $val->nama . '</option>';
         }
         $html .= '</select>';
         return $html;
